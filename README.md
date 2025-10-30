@@ -1,30 +1,46 @@
-README - How to make this project readable by Microsoft Copilot / GitHub Copilot
+# TS25_ZONE_ServerSide
 
-1) GitHub/OneDrive
-   - The easiest approach is to upload the extracted folder to a GitHub repository or to OneDrive/SharePoint.
-   - GitHub Copilot can read files in repositories; uploading the extracted files (not zipped) is recommended.
+Server-side source code for the TwelveSky2 private server project.
 
-2) File formats
-   - Avoid uploading a single .zip. Upload the extracted directory tree so Copilot can index files.
-   - If you must upload an archive, prefer a plain .tar.gz (some tools index it better), but GitHub still prefers the repo.
+## 🧩 Overview
+This repository contains the C++ source files for the **Zone Server**, which handles:
+- Player connections and synchronization
+- Inventory management and item stacking
+- Monster spawning and world updates
+- Server-to-server communication
 
-3) Steps (local)
-   - unzip TS25_ZONE_ServerSide.zip
-     Windows: right-click -> Extract All
-     Linux/Mac: unzip TS25_ZONE_ServerSide.zip -d TS25_ZONE_ServerSide_extracted
-   - create a Git repo:
-     git init
-     git add .
-     git commit -m "Initial import"
-     Create repo on GitHub and push:
-     git remote add origin <your-github-repo-url>
-     git branch -M main
-     git push -u origin main
+## 📁 Structure
+| File | Description |
+|------|--------------|
+| `S01_Zone.cpp` | Main zone logic |
+| `S02_MyServer.cpp` | Server management |
+| `S03_MyUser.cpp` | User data handling |
+| `S10_MyWorld.cpp` | World state updates |
+| `Database.cpp / .h` | Database interface |
+| `MyUser.h / .cpp` | Player data structures |
 
-4) If you want, I created a tar.gz bundle that you can download from this chat and upload directly to GitHub or cloud storage.
+## 🧱 Build Instructions
+Use **Visual Studio 2013–2022** (x64 C++).  
+This code links to shared TwelveSky2 game libraries and requires the client header files and dependencies used in the main project.
 
-5) If you want, I can:
-   - list specific file types (e.g. .cpp, .h, .txt) and show the top-level tree here,
-   - extract and show contents of specific files,
-   - create a minimal project README or restructure repository for easier navigation by Copilot.
+Typical build setup:
+1. Open Visual Studio → New Project → Win32 Console Application.
+2. Add all `.cpp` and `.h` files from this repository.
+3. Configure include paths for shared headers (if part of full TS2 server source).
+4. Build in Release mode.
 
+## 🤖 Using GitHub Copilot
+Once uploaded to GitHub, you can open any file and use Copilot Chat to ask:
+- “Explain what `PutInventory1` does.”  
+- “Optimize stacking logic for iSort == 3.”  
+- “Show me where player zone transitions are handled.”
+
+Copilot will read all `.cpp` and `.h` files from this repository.
+
+## 🧠 Notes
+- Keep `.gitignore` to prevent build files from being committed.
+- Make sure your repository is **public** if you want Copilot indexing.
+
+---
+
+© 2025 — Open source for educational and modding purposes.
